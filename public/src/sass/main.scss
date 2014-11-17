@@ -1,0 +1,389 @@
+//-- imports
+@import "fonts";
+
+//-- variables
+$huge-magenta: #ec008c;
+$huge-lightgray: #eee;
+$huge-tl-black: rgba(0, 0, 0, 0.5);
+
+//-- initial styles
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0px;
+  background: #fff;
+  color: #fff;
+}
+
+.hello {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font: 20vmin/1 HUGEAvantGardeBold;
+  letter-spacing: -0.06em;
+  text-align: center;
+}
+
+html,body {
+	height: 100%;
+}
+
+//-- global elements
+.content-wrapper {
+	position: relative;
+	z-index: -2;
+	top: 60px;
+	left: 0px;
+	-webkit-transition: left .5s;
+	transition: left .5s;
+	
+	&.nav-active {
+		left: 280px;
+	}
+}
+
+.block-wrapper {
+	position: relative;
+	margin-bottom: 48px;
+	padding: 0px 24px;
+	
+	//-- .block-wrapper : desktop
+	@media (min-width:768px) {
+		margin: 0 auto 48px auto;
+		max-width: 968px;
+	}
+}
+
+.screen-matte {
+	opacity: 0;
+	position: fixed;
+	z-index: 0;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	background-color: $huge-tl-black;
+	-webkit-transition: opacity .5s;
+	transition: opacity .5s;
+	
+	&.nav-active {
+		opacity: 1;
+	}
+}
+
+.dt-only {
+	display: none;
+}
+
+//-- desktop
+@media (min-width:768px) {
+	.dt-only {
+		display: block;
+	}
+}
+
+.logo-dt {
+	position: absolute;
+	top: 24px;
+	left: 24px;
+	z-index: 1;
+}
+
+//-- navigation
+nav{
+	position: relative;
+	z-index: 3;
+}
+.m-nav-bar {
+	position: fixed;
+	height: 60px;
+	width: 100%;
+	overflow-y: hidden;
+	background-color: $huge-magenta;
+	
+	@media (min-width:768px) {
+		display: none;
+	}
+}
+
+.m-initial {
+	position: absolute;
+	height: 60px;
+	width: 100%;
+	left: 0px;
+	-webkit-transition: top .5s, left .5s;
+	transition: top .5s, left .5s;
+	
+	&.nav-active {
+		left: -100%;
+	}
+}
+
+.m-secondary {
+	position: absolute;
+	height: 60px;
+	width: 100%;
+	left: -100%;
+	overflow: hidden;
+	-webkit-transition: top .5s, left .5s;
+	transition: top .5s, left .5s;
+	
+	&.nav-active {
+		left: 0px;
+	}
+	
+	.logo {
+		position: absolute;
+		top: 21px;
+		margin: 0px 24px;
+	}
+	
+	.menu-close {
+		width: 68px;
+		height: 68px;
+		margin-left: 48px;
+		position: absolute;
+		right: 2px;
+		top: -4px;
+		cursor: pointer;
+	}
+}
+
+.menu-toggle {
+	cursor: pointer;
+}
+
+.hamburger {
+	width: 68px;
+	height: 68px;
+	position: relative;
+	top: -4px;
+}
+
+.main-navigation {
+	width: 280px;
+	min-height: calc(100% - 60px);
+	margin: 0px;
+	padding: 12px 0px 0px 0px;
+	position: fixed;
+	top: 60px;
+	bottom: 0px;
+	left: -280px;
+	overflow-y: scroll;
+	font-size: 21px;
+	font-family: 'HUGEAvantGardeBold';
+	background-color: #fff;
+	-webkit-transition: left .5s;
+	transition: left .5s;
+	
+	&.nav-active {
+		left: 0px;
+	}
+	
+	&:after {
+		content: '© 2014 Huge. All Rights Reserved.';
+		height: 48px;
+		padding-left: 24px;
+		position: absolute;
+		z-index: 0;
+		bottom: 0px;
+		font-size: 12px;
+		font-family: 'Helvetica Neue', Helvetica, sans-serif;
+		line-height: 48px;
+		color: #000;
+	}
+	
+	li {
+		list-style-type: none;
+		line-height: 48px;
+		 position: relative;
+		 z-index: 1;
+	}
+	
+	a {
+		display: block;
+		position: relative;
+		padding-left: 24px;
+		background-color: #fff;
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+		
+		&:hover {
+			color: $huge-magenta;
+			background-color: $huge-lightgray;
+		}
+		
+		&.has-subnav {
+			
+			&:after {
+				content: '';
+				position: absolute;
+				top: 50%;
+				right: 24px;
+				margin-top: -5px;
+				border: 10px solid transparent;
+				border-top: 10px solid $huge-magenta;	
+			}
+			
+			&.active:after {
+				border-top: none;
+				border-bottom: 10px solid $huge-magenta;
+			}
+		}
+	}
+	
+	//-- .main-navigation : desktop
+	@media (min-width:768px) {
+		width: 100%;
+		height: 72px;
+		min-height: 0px;
+		padding: 0px 0px 0px 132px;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		overflow-y: visible;
+		background-color: $huge-magenta;
+		-webkit-transition: none;
+		transition: none;
+		
+		&:after {
+			content: '';
+		}
+		
+		li {
+			display: inline;
+			float: left;
+			position: static;
+			line-height: 72px;
+		}
+		
+		a {
+			padding: 0px 10px;
+			background-color: $huge-magenta;
+			color: #fff;
+			-webkit-transition: padding .5s;
+			transition: padding .5s;
+			
+			//-- 768px didn't allow nav to fit on one line, expand later
+			@media (min-width:960px) {
+				padding: 0px 24px;
+			}
+			
+			&:hover {
+				background-color: #fff;
+				color: $huge-magenta;
+			}
+			
+			&.has-subnav {
+				&.active {
+					background-color: #fff;
+					color: $huge-magenta;
+				}
+				
+				&:after {
+					border: none;
+				}
+			}
+		}
+	}
+}
+
+//-- sub navigation
+.subnav {
+	display: none;
+	margin: 0px;
+	padding: 0px;
+	font-size: 16px;
+	font-family: 'Galaxie';
+	
+	a {
+		background-color: #fff;
+		
+		&:hover {
+			color: $huge-magenta;
+		}
+	}
+	
+	//-- .subnav : desktop
+	@media (min-width:768px) {
+		position: absolute;
+		background-color: #fff;
+		
+		li {
+			clear: both;
+			display: block;
+			width: 100%;
+			line-height: 48px;
+		}
+		
+		a {
+			color: #000;
+			
+			&:hover {
+				background-color: $huge-lightgray;
+			}
+		}
+	}
+}
+
+//-- main content
+.hero-container {
+	@extend %hide-text;
+	background: url('../images/background-image.jpg') no-repeat center 0;
+	height: 240px;
+	background-size: cover;
+	
+	//-- .hero-container : desktop
+	@media (min-width:768px) {
+		height: 640px;
+	}
+}
+
+h1 {
+	margin: 50px 0px;
+	font-size: 44px;
+	font-family: 'HUGEAvantGardeBold';
+	color: #000;
+	
+	//-- h1 : desktop
+	@media (min-width:768px) {
+		width: 100%;
+		position: absolute;	
+		top: -320px;
+		left: 0px;
+		margin: 0;
+		font-size: 120px;
+		text-align: center;
+		color: #fff;
+		-webkit-transform: translate(0, -50%);
+	  transform: translate(0, -50%);
+	}
+}
+
+p {
+	margin-top: 0px;
+	font-size: 14px;
+	font-family: 'Galaxie';
+	line-height: 1.8;
+	color: #000;
+	
+	//-- p : desktop
+	@media (min-width:768px) {
+		padding-top: 60px;
+		font-size: 24px;
+		line-height: 1.5;
+	}
+}
+
+//-- helpers
+%hide-text {
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
